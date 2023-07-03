@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
+
 function App() {
   const [term, setTerm] = useState('');
 
@@ -11,10 +12,14 @@ function App() {
 
   function handleSearch() {
     console.log(term);
-    axios.get("/search", { params: { term: term } }).then((res) => {
-      console.log('success', res);
-    }).catch((err) => {
-      console.log('error', err);
+    axios.post('http://localhost:1100/', {
+      term: term
+    })
+    .then(function (response) {
+      console.log(response);
+    })
+    .catch(function (error) {
+      console.log(error);
     });
   }
 
